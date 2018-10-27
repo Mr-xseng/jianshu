@@ -40,6 +40,7 @@ export const NavItem = styled.div`
     &.right{
         float: right;
         color: #969696;
+        font-size: 15px;
     };
 `
 export const Adding = styled.div`
@@ -47,6 +48,7 @@ export const Adding = styled.div`
     right: 0;
     top: 0;
     margin: 0 10px;
+    font-size: 15px;
 `
 
 export const Login = styled.div`
@@ -73,7 +75,6 @@ export const Writing = styled.div`
 `
 export const SearchWrapper = styled.div`
     float: left;
-    height: 38px;
     position: relative;
     .iconfont{
         position:absolute;
@@ -85,24 +86,56 @@ export const SearchWrapper = styled.div`
         box-sizing: border-box;
         border-radius: 15px;
         text-align: center;
+        &.focused{
+            color: white;
+            background: gray;
+        }
+        &.appear-enter{
+            transition all .3s;
+        }
+        &.appear-enter-active{
+            background: gray;
+        }
+        &.appear-exit{
+            transition: all .3s;
+        }
+        &.appear-exit-active{
+            opacity: 0;
+        }
     }
 `
 
 export const SearchInput = styled.input.attrs({
-    placeholder: "search"
+    placeholder: "搜索"
 })`
-    width; 160px;
+    width: 160px;
     height: 38px;
     border: none;
     border-radius:19px;
-    box-sizing: border-box;
     outline: none;
     padding: 0 30px 0 20px;
-    font-size; 17px;
+    box-sizing: border-box;
+    font-size: 14px;
     background: #eeeeee;
     margin-left: 30px;
     margin-top: 9px;
+    &.slide-enter{
+        transition: all .3s;
+    }
+    &.slide-enter-active{
+        width: 240px;
+    }
+    &.slide-exit{
+    transition: all .3s;
+    }
+    &.slide-exit-active{
+        width: 160px;
+    }
     &::placeholder{
         color: #999;
+    }
+    color: #777;
+    &.focused{
+        width: 240px;
     }
 `
