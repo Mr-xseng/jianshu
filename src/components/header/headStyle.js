@@ -139,3 +139,71 @@ export const SearchInput = styled.input.attrs({
         width: 240px;
     }
 `
+export const SearchTip = styled.div`
+    &.search-tip::after{
+        content: "";
+        position: absolute;
+        bottom: 99%;
+        left: 25px;
+        width: 0;
+        height: 0;
+        border: 10px solid transparent;
+        border-bottom-color: white;
+        z-index: 100;
+        }
+`
+
+export const SearchInfo = styled.div`
+    position:absolute;
+    top: 56px;
+    left: 30px;
+    width: 230px;
+    padding:10px 10px;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 8px rgba(0,0,0,.2);
+    z-index: 20;
+`
+
+export const SearchTitle = styled.div`
+    font-size: 14px;
+    color: #969696;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 6px;
+    .iconFresh{
+        font-size: 13px;
+        display: block;
+        right: 55px;
+        top: 13px;
+        border: none;
+        transition: all .3s;
+        transform: rotate(180deg);
+        cursor: pointer;
+    }
+`
+
+export const SearchRefresh = styled.span`
+    display: block;
+    float: right;
+    font-size:13px;
+    color: #969696;
+    margin-right: 6px;
+    cursor: pointer;
+`
+
+export const SearchList = styled.div`
+    overflow: hidden;
+    margin-top: 5px;
+`
+export const SearchItem = styled.a`
+    float: left;
+    display: block;
+    padding: 2px 6px;
+    border: 1px solid #ddd;
+    font-size: 12px;
+    color: #787878;
+    border-radius: 3px;
+    margin: 6px 5px;
+    cursor: pointer;
+`
