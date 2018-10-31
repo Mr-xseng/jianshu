@@ -1,10 +1,15 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {
     RecommendWrapper,
     RecommendItem
 } from '../homeStyle'
+import * as actionFunc from '../homeStore/actionCreator'
 
 class RecommendList extends Component{
+    componentDidMount(){
+        this.props.getRecommendList()
+    }
     render () {
         const {recommendList} = this.props
         return (
@@ -12,7 +17,7 @@ class RecommendList extends Component{
                 {
                     recommendList.toJS().map((item) => {
                         return (
-                            <RecommendItem key={item}>
+                            <RecommendItem key={item.pit}>
                                 <img className="Img" src={item.pit} alt=""/>
                             </RecommendItem>
                         )
@@ -23,4 +28,19 @@ class RecommendList extends Component{
     }
 }
 
-export default RecommendList
+export const mapStateToProps = (state) => {
+    return {
+        recommendList: state.getIn(['home', 'recommendList'])
+    }
+}
+
+export const mapDispatchToProps = (dispatch) => {
+    return {
+        getRecommendList(){
+            const action = actionFunc.getRecommendList()
+            dispatch(action)
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecommendList)

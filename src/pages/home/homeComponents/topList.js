@@ -1,11 +1,16 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {
     ToplistWrapper,
     TopItem,
     HotTop
 } from '../homeStyle'
+import * as actionFunc from '../homeStore/actionCreator'
 
 class TopList extends Component{
+    componentDidMount(){
+        this.props.getTopList()
+    }
     render () {
         const {topList} = this.props
         return (
@@ -28,4 +33,19 @@ class TopList extends Component{
     }
 }
 
-export default TopList
+export const mapStateToProps = (state) => {
+    return {
+        topList: state.getIn(['home', 'topList'])
+    }
+}
+
+export const mapDispatchToProps = (dispatch) => {
+    return {
+        getTopList () {
+            const action = actionFunc.getTopList()
+            dispatch(action)
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopList)

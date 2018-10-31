@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import{
     ListWrapper,
     ListItem,
@@ -7,16 +8,20 @@ import{
     ContentWriter,
     MoreContent
 } from '../homeStyle'
+import * as actionFunc from "../homeStore/actionCreator";
 
 class List extends Component{
+    componentDidMount () {
+        this.props.getContentList(1)
+    }
     render () {
-        const {contentList} = this.props
+        const {contentList, getMoreContent, page} = this.props
         return (
             <ListWrapper>
                 {
-                    contentList.toJS().map((item) => {
+                    contentList.toJS().map((item, index) => {
                         return (
-                            <ListItem key={item.title}>
+                            <ListItem key={index}>
                                 <ItemContent>
                                     <ContentInfo>
                                         <h3 className="title">
@@ -43,10 +48,32 @@ class List extends Component{
                         )
                     })
                 }
-                <MoreContent>阅读更多</MoreContent>
+                <MoreContent
+                    onClick={() => getMoreContent(page)}
+                >
+                    阅读更多</MoreContent>
             </ListWrapper>
         )
     }
 }
 
-export default List
+const mapStateToProps = (state) => {
+    return {
+        contentList: state.getIn(['home', 'contentList']),
+        page: state.getIn(['home', 'page'])
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getContentList (page) {
+            const action = actionFunc.getContentList(page)
+            dispatch(action)
+        },
+        getMoreContent (page) {
+            dispatch(actionFunc.getMoreContentList(page + 1))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(List)
