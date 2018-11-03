@@ -31,6 +31,10 @@ export default (state = defaultState, action) => {
                 writerList: action.list,
                 totalPage: action.pageNum
             })
+        case types.CHANGE_WRITER:
+            return state.set('page', action.page)
+        case types.MORE_WRITER:
+            return
         default:
             return state
     }

@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import {BrowserRouter, Route} from 'react-router-dom'
 import Header from './components/header/indexHead'
 import Home from './pages/home/homeIndex'
-import Detail from './pages/detail/detailIndex'
+import DetailWriter from './pages/detail/detail-writer/writerIndex'
 
 class App extends Component {
   render() {
@@ -19,7 +19,7 @@ class App extends Component {
                     <BrowserRouter>
                         <div>
                             <Route exact path="/" component={Home}/>
-                            <Route exact path="/detail" component={Detail}/>
+                            <Route exact path="/detail/writer" component={DetailWriter}/>
                         </div>
                     </BrowserRouter>
                 </div>

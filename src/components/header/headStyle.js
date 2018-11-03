@@ -5,6 +5,12 @@ export const HeaderWrapper = styled.div`
     position: relative;
     height: 56px;
     border-bottom: 1px solid #f0f0f0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    background: #fff;
 `
 
 export const Logo = styled.a.attrs({
@@ -25,8 +31,11 @@ export const Nav = styled.div`
     padding-right: 20px;
 `
 
-export const NavItem = styled.div`
+export const NavItem = styled.a.attrs({
+    href: '/'
+})`
     font-size: 17px;
+    text-decoration: none;
     padding:0 15px;
     box-sizing: border-box;
     line-height: 56px;

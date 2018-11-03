@@ -10,11 +10,15 @@ export const HomeLeft = styled.div`
     width: 625px;
     float: left;
     margin-left: 14px;
+    margin-top: 60px;
+    margin-bottom: 200px;
 `
 
 export const HomeRight = styled.div`
-    width: 280px;
+    width: 290px;
     float: right;
+     margin-top: 60px;
+    
 `
 
 export const ToplistWrapper = styled.div`
@@ -154,6 +158,7 @@ export const DownloadWrapper = styled.div`
     border: 1px solid #f0f0f0;
     overflow: hidden;
     border-radius: 6px;
+    box-sizing: border-box;
     cursor: pointer;
     .Img{
         float: left;
@@ -248,6 +253,8 @@ export const WriterText = styled.div`
         .iconfont{
             font-size: 12px;
             margin-right: 5px;
+            transition: all .5s;
+            transform: rotate(180deg);
         }
     }
 `
@@ -294,4 +301,20 @@ export const AddWriter = styled.div`
         margin-top: -1px;
         margin-right: 1px;
     }
+`
+export const WriterMore = styled.a.attrs({
+    href: '/detail/writer'
+})`
+    width: 100%;
+    display: block;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 13px;
+    color: #787878;
+    background-color: #f7f7f7
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    margin-top: 10px;
+    text-decoration: none;
 `

@@ -22,7 +22,7 @@ import {CSSTransition} from 'react-transition-group'
 
 class Header extends Component{
     render() {
-        const {focused,inputFocused,inputBlur} = this.props
+        const {focused,inputFocused,inputBlur, list} = this.props
         return(
             <HeaderWrapper>
                 <Logo/>
@@ -35,7 +35,7 @@ class Header extends Component{
                             in={focused}
                             classNames="slide"
                         >
-                            <SearchInput onFocus={inputFocused}
+                            <SearchInput onFocus={() => inputFocused(list)}
                                          onBlur={inputBlur}
                                          className={focused ? 'focused' : ''}
                             />
@@ -120,11 +120,11 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        inputFocused () {
+        inputFocused (list) {
             const action = actionFunc.inputFocused()
             dispatch(action)
             const actionAxios = actionFunc.searchAxios()
-            dispatch(actionAxios)
+            !list.toJS().length && dispatch(actionAxios)
         },
         inputBlur () {
             const action = actionFunc.inputBlur()
@@ -139,11 +139,11 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(action)
         },
         clickSearchRefresh (page, totalPage, spin) {
-            let originAngle = spin.style.transform.replace(/[^0-9]/g, "")
+            let originAngle = parseFloat(spin.style.transform.replace(/[^0-9]/g, " "))
             if (originAngle) {
                 originAngle = originAngle + 360
             } else {
-                originAngle = 0
+                originAngle = 360
             }
             spin.style.transform = `rotate(${originAngle}deg)`
             if (page < totalPage) {

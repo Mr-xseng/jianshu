@@ -101,3 +101,12 @@ export const getWriterList = () => {
         })
     }
 }
+
+export const changeWriter = (page) => ({
+    type: types.CHANGE_WRITER,
+    page
+})
+
+export const writerMore = () => ({
+    type: types.MORE_WRITER
+})

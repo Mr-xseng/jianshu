@@ -9,3 +9,7 @@ export const DOWNLOAD_MOUSE_ENTER = 'download_mouse_enter'
 export const DOWNLOAD_MOUSE_LEAVE = 'download_mouse_leave'
 
 export const GET_WRITER_LIST = 'get_writer_list'
+
+export const CHANGE_WRITER = 'change_writer'
+
+export const MORE_WRITER = 'more_writer'

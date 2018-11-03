@@ -4,7 +4,8 @@ import {
     WriterText,
     WriterInfo,
     WriterItem,
-    AddWriter
+    AddWriter,
+    WriterMore
 } from "../homeStyle";
 import {connect} from 'react-redux'
 import * as actionFunc from '../homeStore/actionCreator'
@@ -14,18 +15,26 @@ class Writer extends Component{
         this.props.getWriterList()
     }
     render () {
+        const {changeWriterBtn, page, totalPage, moreClick} = this.props
         return (
             <WriterWrapper>
                 <WriterText>
                     <div className="IntroWriter">推荐作者</div>
                     <div className="refreshIcon">
-                        <i className="iconfont">&#xe705;</i>
-                        <span>换一批</span>
+                        <i className="iconfont"
+                           ref={(spin) => {this.refreshIcon = spin}}
+                        >&#xe705;
+                        </i>
+                        <span onClick={() => changeWriterBtn(page, totalPage, this.refreshIcon)}>
+                            换一批</span>
                     </div>
                 </WriterText>
                 <WriterInfo>
                     {this.getWriter()}
                 </WriterInfo>
+                <WriterMore onClick={moreClick}>
+                    查看更多
+                </WriterMore>
             </WriterWrapper>
         )
     }
@@ -67,10 +76,29 @@ export const mapStateToProps = (state) => {
         totalPage: state.getIn(['home', 'totalPage'])
     }
 }
+
 export const mapDispatchToProps = (dispatch) => {
     return {
         getWriterList(){
             dispatch(actionFunc.getWriterList())
+        },
+        changeWriterBtn(page, totalPage, spin){
+            let originAngle = parseFloat(spin.style.transform.replace(/[^0-9]/g, " "))
+            console.log(spin.style.transform)
+            if (originAngle) {
+                originAngle = originAngle + 360
+            } else {
+                originAngle = 360
+            }
+            spin.style.transform = `rotate(${originAngle}deg)`
+            if (page < totalPage) {
+                dispatch(actionFunc.changeWriter(page + 1))
+            } else {
+                dispatch(actionFunc.changeWriter(1))
+            }
+        },
+        moreClick () {
+
         }
     }
 }
